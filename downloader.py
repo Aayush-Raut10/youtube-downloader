@@ -1,5 +1,8 @@
 import os
 import yt_dlp
+from dotenv import load_dotenv
+
+load_dotenv()
 
 PATH_TO_DOWNLOAD = "downloads"
 
@@ -9,7 +12,9 @@ def download_video(url:str):
 
 
     ydl_opts = {
-        'outtmpl':f"{PATH_TO_DOWNLOAD}/%(title)s.%(ext)s"
+        'outtmpl':f"{PATH_TO_DOWNLOAD}/%(title)s.%(ext)s",
+        'merge_output_format': 'mp4',
+        'cookiefile': os.getenv("COOKIE_FILE")
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
