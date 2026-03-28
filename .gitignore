@@ -4,3 +4,7 @@ __pycache__/
 
 
 downloads
+cookies.txt
+
+# Environment variables
+.env
