@@ -1,0 +1,17 @@
+from urllib.parse import urlparse, parse_qs
+
+def extract_video_id(url:str):
+
+    parsed_url = urlparse(url)
+
+    domain = parsed_url.netloc
+    query_params = parsed_url.query
+
+    print(domain)
+    print(query_params)
+    if "youtube.com" in domain:
+        query_dict = parse_qs(query_params)
+        return query_dict.get("v", [None])[0]
+    
+    else:
+        return None
