@@ -12,13 +12,16 @@ def download_video(url:str):
 
 
     ydl_opts = {
-        'outtmpl':f"{PATH_TO_DOWNLOAD}/%(title)s.%(ext)s",
-        'merge_output_format': 'mp4',
-        'cookiefile': os.getenv("COOKIE_FILE")
+
+        'outtmpl':f"{PATH_TO_DOWNLOAD}/%(title)s.%(ext)s"
+        # 'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio/best',
+        # 'merge_output_format': 'mp4',
+        # 'cookiefile': os.getenv("COOKIE_FILE")
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(url, download=True)
         file_path = ydl.prepare_filename(info)
+    
     
     return file_path

@@ -12,5 +12,8 @@ def extract_video_id(url:str):
         query_dict = parse_qs(query_params)
         return query_dict.get("v", [None])[0]
     
+    elif "youtu.be" in domain:
+        # Short URLs: youtu.be/<video_id>
+        return parsed_url.path.lstrip("/")
     else:
         return None
